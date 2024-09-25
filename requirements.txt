@@ -1,0 +1,9 @@
+tensorflow
+numpy
+pandas
+google-api-python-client
+python-dotenv
+flask
+flask_cors
+Flask-Session
+openpyxl

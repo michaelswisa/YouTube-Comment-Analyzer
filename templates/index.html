@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouTube Comment  Analyzer</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>YouTube Comment Analyzer</h1>
+        </header>
+
+        <p class="explanation">
+            This website allows you to input a YouTube URL, and it will analyze the comments using a deep learning model
+            to determine the overall sentiment. Simply enter the URL of the video you want to analyze, and the model
+            will process the comments to provide insights into whether they are positive, negative, or neutral.
+        </p>
+
+        <form action="/" method="post">
+            <input type="text" name="video_url" placeholder="Enter YouTube URL" required>
+            <input type="submit" value="Analyze">
+        </form>
+
+        {% if summary %}
+        <!-- Form to download the analyzed comments and summary as an Excel file -->
+        <form method="POST" action="{{ url_for('download_excel') }}">
+            <input type="hidden" name="video_url" value="{{ request.form.get('video_url') }}">
+            <input type="submit" value="Download as Excel">
+        </form>
+
+        <div class="summary">
+            <h2>Summary</h2>
+            <p><strong>Video Name:</strong> {{ summary['video_name'] }}</p>
+            <p><strong>Positive:</strong> {{ summary['positive'] }}</p>
+            <p><strong>Negative:</strong> {{ summary['negative'] }}</p>
+            <p><strong>Number of Comments:</strong> {{ summary['num_comments'] }}</p>
+            <p><strong>Rating:</strong> {{ summary['rating'] }}%</p>
+        </div>
+
+        <h3>Comments</h3>
+        <table>
+            <tr>
+                <th>Comment</th>
+                <th>Sentiment</th>
+            </tr>
+            {% for comment, sentiment in comments %}
+            <tr>
+                <td>{{ comment }}</td>
+                <td>{{ sentiment }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
