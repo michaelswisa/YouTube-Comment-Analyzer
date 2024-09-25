@@ -9,9 +9,9 @@ import pandas as pd
 VOCAB_SIZE = 10000
 MAX_LEN = 250
 EMBEDDING_DIM = 16
-MODEL_PATH = './models/sentiment_analysis_model_optimized.h5'
+MODEL_PATH = '../models/sentiment_analysis_model_optimized.h5'
 
-file_path = r'./data/data.csv'
+file_path = r'../data/data.csv'
 data = pd.read_csv(file_path, encoding='ISO-8859-1')
 df_shuffled = data.sample(frac=1).reset_index(drop=True)
 
@@ -29,10 +29,10 @@ padded_sequences = vectorizer(texts)
 vectorizer_config = vectorizer.get_config()
 vectorizer_weights = vectorizer.get_weights()
 
-with open('./models/vectorizer_config.pickle', 'wb') as handle:
+with open('../models/vectorizer_config.pickle', 'wb') as handle:
     pickle.dump(vectorizer_config, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-with open('./models/vectorizer_weights.pickle', 'wb') as handle:
+with open('../models/vectorizer_weights.pickle', 'wb') as handle:
     pickle.dump(vectorizer.get_vocabulary(), handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # Split data into training and test sets (more balanced)

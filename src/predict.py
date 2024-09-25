@@ -3,15 +3,15 @@ import tensorflow as tf
 from keras import models ,utils ,layers
 import pickle
 
-MODEL_PATH = "./models/sentiment_analysis_model_optimized.h5"
+MODEL_PATH = "../models/sentiment_analysis_model_optimized.h5"
 # Load the saved model
 model = models.load_model(MODEL_PATH)
 
 # Load the TextVectorization layer configuration and weights
-with open('./models/vectorizer_config.pickle', 'rb') as handle:
+with open('../models/vectorizer_config.pickle', 'rb') as handle:
     vectorizer_config = pickle.load(handle)
 
-with open('./models/vectorizer_weights.pickle', 'rb') as handle:
+with open('../models/vectorizer_weights.pickle', 'rb') as handle:
     vectorizer_weights = pickle.load(handle)
 
 # Recreate the TextVectorization layer
